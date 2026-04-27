@@ -488,21 +488,21 @@ function renderSummaryCards(coins) {
   const isAvgUp = avgChange >= 0;
 
   container.innerHTML = `
-    <div class="bg-card border border-border rounded-xl p-5">
+    <div class="bg-card border border-border rounded-xl p-4 md:p-5">
       <div class="text-xs text-slate-500 font-medium mb-2 uppercase tracking-wider">Coins Watching</div>
-      <div class="text-2xl font-bold text-white">${coins.length}</div>
+      <div class="text-xl md:text-2xl font-bold text-white">${coins.length}</div>
       <div class="text-xs text-slate-600 mt-1">${gainers.length} gaining · ${losers.length} losing</div>
     </div>
-    <div class="bg-card border border-border rounded-xl p-5">
+    <div class="bg-card border border-border rounded-xl p-4 md:p-5">
       <div class="text-xs text-slate-500 font-medium mb-2 uppercase tracking-wider">Avg 24h Change</div>
-      <div class="text-2xl font-bold ${isAvgUp ? 'text-emerald-400' : 'text-red-400'}">
+      <div class="text-xl md:text-2xl font-bold ${isAvgUp ? 'text-emerald-400' : 'text-red-400'}">
         ${isAvgUp ? '▲' : '▼'} ${Math.abs(avgChange).toFixed(2)}%
       </div>
       <div class="text-xs text-slate-600 mt-1">Across all watched coins</div>
     </div>
-    <div class="bg-card border border-border rounded-xl p-5">
+    <div class="bg-card border border-border rounded-xl p-4 md:p-5">
       <div class="text-xs text-slate-500 font-medium mb-2 uppercase tracking-wider">Best Performer</div>
-      <div class="text-2xl font-bold text-indigo-400">
+      <div class="text-xl md:text-2xl font-bold text-indigo-400">
         ${coins.sort((a, b) => b.price_change_percentage_24h - a.price_change_percentage_24h)[0]?.symbol?.toUpperCase() ?? '—'}
       </div>
       <div class="text-xs text-slate-600 mt-1">
@@ -523,15 +523,15 @@ function renderWatchlistTable(coins) {
 
   if (coins.length === 0) {
     container.innerHTML = `
-      <div class="bg-card border border-border rounded-2xl p-16 text-center">
-        <div class="w-14 h-14 rounded-full bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center mx-auto mb-5">
-          <svg class="w-6 h-6 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <div class="bg-card border border-border rounded-2xl p-8 md:p-16 text-center">
+        <div class="w-12 h-12 md:w-14 md:h-14 rounded-full bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center mx-auto mb-5">
+          <svg class="w-5 h-5 md:w-6 md:h-6 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 3l14 9-14 9V3z"/>
           </svg>
         </div>
         <div class="text-white font-semibold text-base mb-2">Your watchlist is empty</div>
         <div class="text-slate-500 text-sm mb-6">Head to Markets and click "+ Watch" on any coin to start tracking it here.</div>
-        <a href="markets.html" class="inline-block bg-indigo-500 hover:bg-indigo-600 text-white text-sm font-semibold px-6 py-2.5 rounded-lg transition">
+        <a href="markets.html" class="inline-block bg-indigo-500 hover:bg-indigo-600 text-white text-sm font-semibold px-5 md:px-6 py-2.5 rounded-lg transition w-full md:w-auto">
           Browse Markets
         </a>
       </div>
@@ -541,7 +541,7 @@ function renderWatchlistTable(coins) {
 
   container.innerHTML = `
     <div class="bg-card border border-border rounded-2xl overflow-hidden">
-      <div class="grid grid-cols-6 text-xs text-slate-600 uppercase tracking-wider px-6 py-3 border-b border-border font-medium">
+      <div class="hidden md:grid grid-cols-6 text-xs text-slate-600 uppercase tracking-wider px-6 py-3 border-b border-border font-medium">
         <span class="col-span-2">Asset</span>
         <span class="text-right">Price</span>
         <span class="text-right">24h Change</span>
@@ -552,25 +552,25 @@ function renderWatchlistTable(coins) {
         const change = coin.price_change_percentage_24h?.toFixed(2) ?? '0.00';
         const isUp = parseFloat(change) >= 0;
         return `
-          <div class="grid grid-cols-6 items-center px-6 py-4 border-b border-border hover:bg-white/[0.02] transition group last:border-b-0">
-            <div class="col-span-2 flex items-center gap-3">
+          <div class="block md:grid md:grid-cols-6 md:items-center px-4 md:px-6 py-4 border-b border-border hover:bg-white/[0.02] transition last:border-b-0">
+            <div class="md:col-span-2 flex items-center gap-3 mb-2 md:mb-0">
               <img src="${coin.image}" class="w-8 h-8 rounded-full" />
               <div>
                 <div class="text-white text-sm font-semibold">${coin.name}</div>
                 <div class="text-slate-600 text-xs uppercase">${coin.symbol}</div>
               </div>
             </div>
-            <div class="text-right text-white text-sm font-semibold">${formatPrice(coin.current_price)}</div>
-            <div class="text-right">
+            <div class="md:text-right text-white text-sm font-semibold mb-1 md:mb-0">${formatPrice(coin.current_price)}</div>
+            <div class="md:text-right mb-1 md:mb-0">
               <span class="text-xs font-semibold px-1.5 py-0.5 rounded ${isUp ? 'text-emerald-400 bg-emerald-400/10' : 'text-red-400 bg-red-400/10'}">
                 ${isUp ? '▲' : '▼'} ${Math.abs(change)}%
               </span>
             </div>
-            <div class="text-right text-xs text-slate-500">${formatMarketCap(coin.market_cap)}</div>
-            <div class="text-right">
+            <div class="md:text-right text-xs text-slate-500 mb-2 md:mb-0">${formatMarketCap(coin.market_cap)}</div>
+            <div class="md:text-right">
               <button
                 onclick="removeFromWatchlist('${coin.id}')"
-                class="text-xs px-3 py-1.5 rounded-lg border border-border text-slate-600 hover:border-red-500/40 hover:text-red-400 transition font-medium"
+                class="text-xs px-3 py-1.5 rounded-lg border border-border text-slate-600 hover:border-red-500/40 hover:text-red-400 transition font-medium w-full md:w-auto"
               >
                 Remove
               </button>
