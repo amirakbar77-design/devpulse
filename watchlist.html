@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DevPulse — Watchlist</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            surface: '#0f1117',
+            card: '#131620',
+            border: '#1e2130',
+            indigo: { 400: '#818cf8', 500: '#6366f1', 600: '#4f46e5' }
+          },
+          fontFamily: { sans: ['Inter', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dot-live { animation: pulse-dot 2s ease-in-out infinite; }
+    @keyframes pulse-dot { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+  </style>
+</head>
+<body class="bg-surface text-slate-300 min-h-screen">
+
+  <!-- Navbar -->
+  <nav class="bg-surface border-b border-border sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+      <div class="flex items-center gap-3">
+        <span class="text-lg font-bold text-white tracking-tight">Dev<span class="text-indigo-400">Pulse</span></span>
+        <span class="text-xs bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 px-2 py-0.5 rounded-full font-medium">Beta</span>
+      </div>
+      <ul class="flex gap-6 text-sm">
+        <li><a href="index.html" class="text-slate-500 hover:text-slate-300 transition">Home</a></li>
+        <li><a href="markets.html" class="text-slate-500 hover:text-slate-300 transition">Markets</a></li>
+        <li><a href="news.html" class="text-slate-500 hover:text-slate-300 transition">News</a></li>
+        <li><a href="watchlist.html" class="text-white font-medium">Watchlist</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <section class="max-w-6xl mx-auto px-6 pt-12 pb-6">
+    <div class="flex justify-between items-end">
+      <div>
+        <h1 class="text-3xl font-bold text-white tracking-tight">Watchlist</h1>
+        <p class="text-slate-500 text-sm mt-1">Your personally tracked coins</p>
+      </div>
+      <div class="flex items-center gap-3">
+        <span class="text-xs text-slate-600" id="watchlistCount">0 coins</span>
+        <button onclick="clearWatchlist()" class="text-xs px-3 py-1.5 rounded-lg border border-border text-slate-600 hover:border-red-500/40 hover:text-red-400 transition font-medium">
+          Clear all
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Summary Cards -->
+  <section class="max-w-6xl mx-auto px-6 pb-6">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3" id="summaryCards">
+      <!-- Injected by JS -->
+    </div>
+  </section>
+
+  <!-- Watchlist Table -->
+  <section class="max-w-6xl mx-auto px-6 pb-16">
+    <div id="watchlistContainer">
+      <!-- Injected by JS -->
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-border">
+    <div class="max-w-6xl mx-auto px-6 py-6 flex justify-between items-center">
+      <div class="text-xs text-slate-600">© 2025 DevPulse — Educational build</div>
+      <div class="flex items-center gap-2">
+        <span class="w-1.5 h-1.5 rounded-full bg-indigo-500 dot-live inline-block"></span>
+        <span class="text-xs text-indigo-400 font-medium">Live</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

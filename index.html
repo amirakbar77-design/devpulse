@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DevPulse</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            surface: '#0f1117',
+            card: '#131620',
+            border: '#1e2130',
+            indigo: { 400: '#818cf8', 500: '#6366f1', 600: '#4f46e5' }
+          },
+          fontFamily: { sans: ['Inter', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dot-live { animation: pulse-dot 2s ease-in-out infinite; }
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+  </style>
+</head>
+<body class="bg-surface text-slate-300 min-h-screen">
+
+  <!-- Navbar -->
+  <nav class="bg-surface border-b border-border sticky top-0 z-50 backdrop-blur-sm">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+      <div class="flex items-center gap-3">
+        <span class="text-lg font-bold text-white tracking-tight">Dev<span class="text-indigo-400">Pulse</span></span>
+        <span class="text-xs bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 px-2 py-0.5 rounded-full font-medium">Beta</span>
+      </div>
+      <ul class="flex gap-6 text-sm">
+        <li><a href="index.html" class="text-white font-medium">Home</a></li>
+        <li><a href="markets.html" class="text-slate-500 hover:text-slate-300 transition">Markets</a></li>
+        <li><a href="news.html" class="text-slate-500 hover:text-slate-300 transition">News</a></li>
+        <li><a href="watchlist.html" class="text-slate-500 hover:text-slate-300 transition">Watchlist</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="max-w-6xl mx-auto px-6 pt-20 pb-16">
+    <div class="flex items-center gap-2 mb-6">
+      <span class="w-2 h-2 rounded-full bg-indigo-500 dot-live inline-block"></span>
+      <span class="text-xs text-indigo-400 font-medium tracking-wide">Live market data</span>
+    </div>
+    <h1 class="text-5xl font-bold text-white leading-tight mb-5 tracking-tight">
+      Your personal<br/>
+      <span class="text-indigo-400">market intelligence.</span>
+    </h1>
+    <p class="text-slate-400 text-base max-w-lg mb-10 leading-relaxed">
+      Real-time cryptocurrency prices, curated tech news, and a personal watchlist — built for developers and traders who move fast.
+    </p>
+    <div class="flex gap-3">
+      <a href="markets.html" class="bg-indigo-500 hover:bg-indigo-600 text-white text-sm font-semibold px-6 py-2.5 rounded-lg transition">
+        Open Markets
+      </a>
+      <a href="news.html" class="bg-card hover:bg-border text-slate-300 text-sm font-medium px-6 py-2.5 rounded-lg border border-border transition">
+        Read News
+      </a>
+    </div>
+  </section>
+
+  <!-- Live Prices -->
+  <section class="max-w-6xl mx-auto px-6 pb-10">
+    <div class="flex justify-between items-center mb-4">
+      <h2 class="text-sm font-semibold text-white">Live Prices</h2>
+      <a href="markets.html" class="text-xs text-indigo-400 hover:text-indigo-300 transition font-medium">View all →</a>
+    </div>
+    <div id="ticker" class="grid grid-cols-2 md:grid-cols-4 gap-3">
+      <div class="bg-card border border-border rounded-xl p-4 animate-pulse h-24"></div>
+      <div class="bg-card border border-border rounded-xl p-4 animate-pulse h-24"></div>
+      <div class="bg-card border border-border rounded-xl p-4 animate-pulse h-24"></div>
+      <div class="bg-card border border-border rounded-xl p-4 animate-pulse h-24"></div>
+    </div>
+  </section>
+
+  <!-- Global Stats -->
+  <section class="max-w-6xl mx-auto px-6 pb-10">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <div class="bg-card border border-border rounded-xl p-5">
+        <div class="text-xs text-slate-500 font-medium mb-2 uppercase tracking-wider">Active Coins</div>
+        <div id="statCoins" class="text-2xl font-bold text-white">—</div>
+      </div>
+      <div class="bg-card border border-border rounded-xl p-5">
+        <div class="text-xs text-slate-500 font-medium mb-2 uppercase tracking-wider">Total Market Cap</div>
+        <div id="statMarketCap" class="text-2xl font-bold text-indigo-400">—</div>
+      </div>
+      <div class="bg-card border border-border rounded-xl p-5">
+        <div class="text-xs text-slate-500 font-medium mb-2 uppercase tracking-wider">BTC Dominance</div>
+        <div id="statDominance" class="text-2xl font-bold text-white">—</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- News Preview -->
+  <section class="max-w-6xl mx-auto px-6 pb-20">
+    <div class="flex justify-between items-center mb-4">
+      <h2 class="text-sm font-semibold text-white">Latest Tech News</h2>
+      <a href="news.html" class="text-xs text-indigo-400 hover:text-indigo-300 transition font-medium">See all →</a>
+    </div>
+    <div id="newsPreview" class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <div class="bg-card border border-border rounded-xl p-4 animate-pulse h-40"></div>
+      <div class="bg-card border border-border rounded-xl p-4 animate-pulse h-40"></div>
+      <div class="bg-card border border-border rounded-xl p-4 animate-pulse h-40"></div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-border">
+    <div class="max-w-6xl mx-auto px-6 py-6 flex justify-between items-center">
+      <div class="text-xs text-slate-600">© 2025 DevPulse — Educational build · Data by CoinGecko & NewsData</div>
+      <div class="flex items-center gap-2">
+        <span class="w-1.5 h-1.5 rounded-full bg-indigo-500 dot-live inline-block"></span>
+        <span class="text-xs text-indigo-400 font-medium">Live</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
