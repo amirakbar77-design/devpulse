@@ -1,0 +1,4 @@
+const CONFIG = {
+  COINGECKO_KEY: "CG-YwsupAZ5CpoCeNmYaDGnoeYi",
+  NEWSDATA_KEY: "pub_0a1fa9a8e98741c283104faa09193d1c"
+};
