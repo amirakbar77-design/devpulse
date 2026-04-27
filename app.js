@@ -265,25 +265,25 @@ function renderCoinsTable(coins) {
     const watchlist = JSON.parse(localStorage.getItem('watchlist') || '[]');
     const inWatchlist = watchlist.some(w => w.id === coin.id);
     return `
-      <div class="grid grid-cols-6 items-center px-6 py-4 border-b border-border hover:bg-white/[0.02] transition group">
-        <div class="col-span-2 flex items-center gap-3">
+      <div class="block md:grid md:grid-cols-6 md:items-center px-4 md:px-6 py-4 border-b border-border hover:bg-white/[0.02] transition">
+        <div class="md:col-span-2 flex items-center gap-3 mb-2 md:mb-0">
           <img src="${coin.image}" class="w-7 h-7 rounded-full" />
           <div>
             <div class="text-white text-sm font-semibold">${coin.name}</div>
             <div class="text-slate-600 text-xs uppercase">${coin.symbol}</div>
           </div>
         </div>
-        <div class="text-right text-white text-sm font-semibold">${formatPrice(coin.current_price)}</div>
-        <div class="text-right">
+        <div class="md:text-right text-white text-sm font-semibold mb-1 md:mb-0">${formatPrice(coin.current_price)}</div>
+        <div class="md:text-right mb-1 md:mb-0">
           <span class="text-xs font-semibold px-1.5 py-0.5 rounded ${isUp ? 'text-emerald-400 bg-emerald-400/10' : 'text-red-400 bg-red-400/10'}">
             ${isUp ? '▲' : '▼'} ${Math.abs(change)}%
           </span>
         </div>
-        <div class="text-right text-xs text-slate-500">${formatMarketCap(coin.market_cap)}</div>
-        <div class="text-right">
+        <div class="md:text-right text-xs text-slate-500 mb-2 md:mb-0">${formatMarketCap(coin.market_cap)}</div>
+        <div class="md:text-right">
           <button
             onclick="toggleWatchlist(${JSON.stringify(coin).replace(/"/g, '&quot;')})"
-            class="text-xs px-3 py-1.5 rounded-lg border font-medium transition ${inWatchlist
+            class="text-xs px-3 py-1.5 rounded-lg border font-medium transition w-full md:w-auto ${inWatchlist
               ? 'border-indigo-500 bg-indigo-500/10 text-indigo-400'
               : 'border-border text-slate-600 hover:border-slate-600 hover:text-slate-300'}"
           >
